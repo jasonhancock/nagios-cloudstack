@@ -46,7 +46,8 @@ return array(
 ```
 
 The configuration file can live anywhere on the filesystem. You tell the plugins
-about this location via the -f parameter.
+about this location via the -f parameter. Note that the account you use needs to
+be an admin level account.
 
 PNP4NAGIOS
 ----------
