@@ -57,10 +57,10 @@ for EL6).
 
 INSTALLATION:
 -------------
-Put the php files in the plugins directory into your nagios plugin directory
+Put the php files in the [plugins](https://github.com/jasonhancock/nagios-cloudstack/tree/master/plugins) directory into your nagios plugin directory
 (likely either /usr/lib/nagios/plugins or /usr/lib64/nagios/plugins). 
 
-The pnp4nagios templates located in the pnp4nagios/templates directory should be
+The pnp4nagios templates located in the [pnp4nagios/templates](https://github.com/jasonhancock/nagios-cloudstack/tree/master/pnp4nagios/templates) directory should be
 placed into your pnp4nagios/templates directory (this directory was located at 
 /usr/share/nagios/html/pnp4nagios/templates on my machine).
 
