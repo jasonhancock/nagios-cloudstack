@@ -107,5 +107,6 @@ define service{
 
 EXAMPLE GRAPHS:
 ---------------
-check_cloud_instances:
+**check_cloud_instances:**
+
 ![check_cloud_instances](https://github.com/jasonhancock/nagios-cloudstack/raw/master/example-images/check_cloud_instances.png)
