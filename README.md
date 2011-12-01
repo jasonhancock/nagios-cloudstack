@@ -85,7 +85,7 @@ define host {
 
 define command{
     command_name check_cloud_instances
-    command_line /usr/bin/php $USER1$/check_cloud_instances.php
+    command_line /usr/bin/php $USER1$/check_cloud_instances.php -f /path/to/config/file.php
 }
 
 define service {
