@@ -68,7 +68,9 @@ NAGIOS CONFIGURATION:
 ---------------------
 The snippet of nagios configuration below assumes that you have a working Nagios
 installation and that you have correctly configured pnp4nagios. I don't like to
-tie services to specific hosts. Instead, I use hostgroups.
+tie services to specific hosts. Instead, I use hostgroups. The example below 
+assumes that I only have a single zone("Zone Alpha") that contains a single
+pod ("Pod Beta")
 
 ```
 define hostgroup {
@@ -101,6 +103,48 @@ define service{
     hostgroups             Cloud Manager 
     check_command          check_cloud_instances
     normal_check_interval  5
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Cloud POD Beta CPU Used
+    hostgroups           Cloud Manager
+    check_command        check_cloud_capacity!cpu!Pod Beta
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Cloud POD Beta Memory Used
+    hostgroups           Cloud Manager
+    check_command        check_cloud_capacity!memory!Pod Beta
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Cloud POD Beta Primary Storage Used
+    hostgroups           Cloud Manager
+    check_command        check_cloud_capacity!storage_primary_used!Pod Beta
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Cloud POD Beta Private IPs Used
+    hostgroups           Cloud Manager
+    check_command        check_cloud_capacity!ips_private!Pod Beta
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Cloud ZONE Alpha Public IPs Used
+    hostgroups           Cloud Manager
+    check_command        check_cloud_capacity!ips_public!Zone Alpha
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Cloud ZONE Alpha Secondary Storage
+    hostgroups           Cloud Manager
+    check_command        check_cloud_capacity!storage_secondary!Zone Alpha
 }
 
 ```
