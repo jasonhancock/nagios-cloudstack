@@ -101,6 +101,11 @@ define command{
     command_line /usr/bin/php $USER1$/check_cloud_systemvms.php -f /path/to/config/file.php -t $ARG1$
 }
 
+define command{
+    command_name check_cloud_consoleproxy_sessions
+    command_line /usr/bin/php $USER1$/check_cloud_consoleproxy_sessions.php -f /etc/nagios/cloudstack_api_conf.php -w 5 -c 10
+}
+
 define service {
     name        generic-service-graphed
     use         generic-service
@@ -177,6 +182,13 @@ define service{
     service_description  Secondary Storage VMs
     hostgroups           Cloud Manager
     check_command        check_cloud_systemvms!secondarystoragevm
+}
+
+define service{
+    use                  generic-service-graphed
+    service_description  Console Proxy Sessions 
+    hostgroups           Cloud Manager
+    check_command        check_cloud_consolesproxy_sessions
 }
 ```
 
