@@ -103,7 +103,7 @@ define command{
 
 define command{
     command_name check_cloud_consoleproxy_sessions
-    command_line /usr/bin/php $USER1$/check_cloud_consoleproxy_sessions.php -f /etc/nagios/cloudstack_api_conf.php -w 5 -c 10
+    command_line /usr/bin/php $USER1$/check_cloud_consoleproxy_sessions.php -f /path/to/config/file.php -w 5 -c 10
 }
 
 define service {
