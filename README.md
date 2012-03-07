@@ -87,8 +87,18 @@ define host {
 }
 
 define command{
+    command_name check_cloud_capacity
+    command_line /usr/bin/php $USER1$/check_cloud_capacity.php -f /path/to/config/file.php -t $ARG1$ -w 80 -c 90 -n "$ARG2$"
+}
+
+define command{
     command_name check_cloud_instances
     command_line /usr/bin/php $USER1$/check_cloud_instances.php -f /path/to/config/file.php
+}
+
+define command{
+    command_name check_cloud_systemvms
+    command_line /usr/bin/php $USER1$/check_cloud_systemvms.php -f /path/to/config/file.php -t $ARG1$
 }
 
 define service {
@@ -148,6 +158,26 @@ define service{
     check_command        check_cloud_capacity!storage_secondary!Zone Alpha
 }
 
+define service{
+    use                  generic-service
+    service_description  Console Proxy VMs
+    hostgroups           Cloud Manager
+    check_command        check_cloud_systemvms!consoleproxy
+}
+
+define service{
+    use                  generic-service
+    service_description  Router VMs
+    hostgroups           Cloud Manager
+    check_command        check_cloud_systemvms!router
+}
+
+define service{
+    use                  generic-service
+    service_description  Secondary Storage VMs
+    hostgroups           Cloud Manager
+    check_command        check_cloud_systemvms!secondarystoragevm
+}
 ```
 
 EXAMPLE GRAPHS:
